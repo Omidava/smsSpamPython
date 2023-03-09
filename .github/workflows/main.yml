@@ -1,7 +1,21 @@
-steps:
-- uses: actions/checkout@v3
-- uses: actions/setup-python@v4
-  with:
-    python-version: '3.10'
-    cache: 'pip'
-- run: python smsSpam.py
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.11.1"]
+        exclude:
+          - os: macos-latest
+            python-version: "3.11.1"
+          - os: windows-latest
+            python-version: "3.11.1"
+
+
+
+
